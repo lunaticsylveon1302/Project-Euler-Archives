@@ -8,7 +8,10 @@ Find the thirteen adjacent digits in this 1000-digit number that have the greate
 ## Explanation (ft. C++)
 The naive approach is to calculate each and every products of thirteen adjacent digits, and then compare them altogether for the final result. However, it would be very computationally complex to execute this via brute-forcing only. Fortunately, there is a technique that drastically reduce the complexity of this process, going by the name of **Fixed Sliding Window**. This writeup would not delve into that technique, however, but rather brief the logic behind the solution of this problem only. 
 
-The solution code will be divided into two parts: The first is to compute the product of thirteen digits. The second is to "slide the window". 
+The solution code will be divided into two parts: 
+- The first is to compute the product of thirteen digits.
+- The second is to "slide the window".
+
 The first part is pretty straightforward: If there is any 0s in the string, the product would be automatically set to 0. Otherwise, just multiply accordingly.
 ```cpp
 long long product = 1; bool is_zero = false;
