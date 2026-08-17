@@ -11,36 +11,36 @@ The naive approach is to calculate each and every products of thirteen adjacent 
 The solution code will be divided into two parts: The first is to compute the product of thirteen digits. The second is to "slide the window". 
 The first part is pretty straightforward: If there is any 0s in the string, the product would be automatically set to 0. Otherwise, just multiply accordingly.
 ```cpp
-    long long product = 1; bool is_zero = false;
+long long product = 1; bool is_zero = false;
 
-    for (int i = 0; i < k; i++){
-        int digit = nums[i] - '0';
-        if (digit == 0) is_zero = true;
-        else product *= digit;
-    }
+for (int i = 0; i < k; i++){
+    int digit = nums[i] - '0';
+    if (digit == 0) is_zero = true;
+    else product *= digit;
+}
 ```
 Note that we have to do "nums[i] - '0'", since nums[i] is a char and the value is saved in ASCII value rather than corresponding to the actual number. For example, nums[i] = '7' = 55, not 7. Reducing nums[i] by '0', however, can rectify the value. Applying to the same example: nums[i] - '0' = '7' - '0' = 55 - 48 = 7.
 The second part is a bit more perplexing, introducing a new concept:
 "A sliding window is a popular algorithmic concept used to process arrays or strings efficiently. Instead of recalculating values from scratch for every subset of data, it maintains a moving subset - or "window" - that slides step-by-step through the main data structure."
 At first, I tried to multiply and divide the ingoing and outgoing number directly into the product:
 ```cpp
-  for (int i = k; i < size; i++){
-      if ((nums[i - k] - '0') != 0) product /= (nums[i - k] - '0'); else product = 1;
-      product *= (nums[i] - '0');
-      max_product = max(product, max_product);
-  }
+for (int i = k; i < size; i++){
+  if ((nums[i - k] - '0') != 0) product /= (nums[i - k] - '0'); else product = 1;
+  product *= (nums[i] - '0');
+  max_product = max(product, max_product);
+}
 ```
 But this approach will corrupt the result. It only accounts the presence of incoming 0s, but overlooks the outgoing ones. I failed to evaluate that, when a 0 left, I do not recompute the product from scratch, but rather I need to factor in the non-zeros that already in the current string. Introducing a zero-counter that always evalute the current string would do wonders:
 ```cpp
-    int zero_counter = 0;
+int zero_counter = 0;
 
-    for (int i = k; i < size; i++){
-        int outgoing = nums[i - k] - '0';
-        int ingoing = nums[i] - '0';
-        if (outgoing == 0) -- zero_counter; else product /= outgoing;
-        if (ingoing == 0) ++ zero_counter; else product *= ingoing;
-        if (zero_counter == 0) max_product = max(product, max_product);
-    }
+for (int i = k; i < size; i++){
+    int outgoing = nums[i - k] - '0';
+    int ingoing = nums[i] - '0';
+    if (outgoing == 0) -- zero_counter; else product /= outgoing;
+    if (ingoing == 0) ++ zero_counter; else product *= ingoing;
+    if (zero_counter == 0) max_product = max(product, max_product);
+}
 ```
 ## Full solution
 ```cpp
