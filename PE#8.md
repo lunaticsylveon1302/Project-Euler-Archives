@@ -1,5 +1,4 @@
 # Problem 8: Largest Product in a Series
-=============================
 ## Task
 Given the number:
 ```
