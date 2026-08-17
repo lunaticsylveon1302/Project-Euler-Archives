@@ -27,6 +27,7 @@ Note that we have to do `nums[i] - '0'`, since nums[i] is a char and the value i
 The second part is a bit more perplexing, introducing a new concept:
 
 "A sliding window is a popular algorithmic concept used to process arrays or strings efficiently. Instead of recalculating values from scratch for every subset of data, it maintains a moving subset - or "window" - that slides step-by-step through the main data structure."
+
 At first, I tried to multiply and divide the ingoing and outgoing number directly into the product:
 ```cpp
 for (int i = k; i < size; i++){
