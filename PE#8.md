@@ -36,7 +36,7 @@ for (int i = k; i < size; i++){
   max_product = max(product, max_product);
 }
 ```
-But this approach will corrupt the result. It only accounts the presence of incoming 0s, but overlooks the outgoing ones. I failed to evaluate that, when a 0 left, I do not recompute the product from scratch, but rather I need to factor in the non-zeros that already in the current string. Introducing a zero-counter that always evalute the current string would do wonders:
+This approach is corrupted, however. It only accounts the presence of incoming 0s, but overlooks the outgoing ones. What I failed to evaluate is that, when a 0 left, I do not recompute the product from scratch, but rather I need to factor in the non-zeros that are already in the string that I'm inspecting. Introducing a zero-counter that always evalute the current string would do wonders:
 ```cpp
 int zero_counter = 0;
 
