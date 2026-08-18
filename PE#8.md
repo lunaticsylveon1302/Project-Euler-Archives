@@ -22,7 +22,7 @@ for (int i = 0; i < k; i++){
     else product *= digit;
 }
 ```
-Note that we have to do `nums[i] - '0'`, since nums[i] is a char and the value is saved in ASCII value rather than corresponding to the actual number. For example, `nums[i] = '7' = 55`, not 7. Reducing nums[i] by '0', however, can rectify the value. Applying to the same example: `nums[i] - '0' = '7' - '0' = 55 - 48 = 7`
+Note that we have to do `nums[i] - '0'`, since `nums[i]` is a char and the value is saved in ASCII value rather than corresponding to the actual number. For example, `nums[i] = '7' = 55`, not 7. Reducing `nums[i]` by `'0'`, however, can rectify the value. Applying to the same example: `nums[i] - '0' = '7' - '0' = 55 - 48 = 7`
 
 The second part is a bit more perplexing, introducing a new concept:
 
